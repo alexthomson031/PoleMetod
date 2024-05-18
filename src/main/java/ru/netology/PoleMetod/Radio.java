@@ -11,26 +11,22 @@ public class Radio {
         if (newCurrentVolume < 0) {
             return;
         }
-        if (newCurrentVolume > 100) {
-            return;
+        if (newCurrentVolume >= 100) {
+            currentVolume = 100;
         }
-        currentVolume = newCurrentVolume;
     }
 
     public void increaseVolume() {
         if (currentVolume < 100) {
             currentVolume = currentVolume + 1;
         }
-        if (currentVolume == 100) {
-            currentVolume = currentVolume;
-        }
     }
 
-    public void decreaseVolume() {
-        if (currentVolume > 0) {
-            currentVolume = currentVolume - 1;
+    public void setDecreaseVolume(int newDecreaseVolume) {
+        if (newDecreaseVolume > 0) {
+            currentVolume = newDecreaseVolume - 1;
         }
-        if (currentVolume == 0) {
+        if (newDecreaseVolume == 0) {
             currentVolume = currentVolume;
         }
     }
@@ -47,7 +43,7 @@ public class Radio {
 
     public void setCurrentStation(int newCurrentStation) {
         if (newCurrentStation < 0) {
-           newCurrentStation = 9;
+            newCurrentStation = 9;
         }
         if (newCurrentStation > 9) {
             newCurrentStation = 0;
@@ -59,26 +55,24 @@ public class Radio {
         if (currentStation < 9) {
             currentStation = currentStation + 1;
         }
-        if (currentStation > 9) {
-            currentStation = 0;
-        }
     }
 
-    public void decreaseStation() { //до 0
-        if (currentStation > 0) {
-            currentStation = currentStation - 1;
+    public void setDecreaseStation(int newDecreaseStation) { //до 0
+        if (newDecreaseStation > 0) {
+            newDecreaseStation = newDecreaseStation - 1;
         }
-        if (currentStation == 0) {
-            currentStation = currentStation;
+        if (newDecreaseStation == 0) {
+            newDecreaseStation = 9;
         }
+        currentStation = newDecreaseStation;
     }
-    public void setStation (int yourStation) {
-        if (currentStation < 0) {
-            return;
+
+    public void setStation(int yourStation) {
+        if (yourStation >= 0) {
+            currentStation = yourStation;
         }
-        if (currentStation > 9) {
-            return;
+        if (yourStation <= 9) {
+            currentStation = yourStation;
         }
-        currentStation = yourStation;
     }
 }
