@@ -32,7 +32,7 @@ public class RadioTest {
         Radio rad = new Radio();
         rad.setCurrentVolume(101);
 
-        int expected = 100;
+        int expected = 0;
         int actual = rad.getCurrentVolume();
 
         Assertions.assertEquals(expected, actual);
@@ -55,7 +55,7 @@ public class RadioTest {
         rad.increaseVolume();
 
         int expected = 1;
-        int actual = rad.currentVolume;
+        int actual = rad.getCurrentVolume();
 
         Assertions.assertEquals(expected, actual);
     }
@@ -63,10 +63,11 @@ public class RadioTest {
     @Test
     public void decreaseVolume() {
         Radio rad = new Radio();
-        rad.setDecreaseVolume(0);
+        rad.setCurrentVolume(50);
+        rad.decreaseVolume();
 
-        int expected = 0;
-        int actual = rad.currentVolume;
+        int expected = 49;
+        int actual = rad.getCurrentVolume();
 
         Assertions.assertEquals(expected, actual);
     }
@@ -74,10 +75,11 @@ public class RadioTest {
     @Test
     public void decrease0Volume() {
         Radio rad = new Radio();
-        rad.setDecreaseVolume(0);
+        rad.setCurrentVolume(0);
+        rad.decreaseVolume();
 
         int expected = 0;
-        int actual = rad.currentVolume;
+        int actual = rad.getCurrentVolume();
 
         Assertions.assertEquals(expected, actual);
     }
@@ -85,10 +87,10 @@ public class RadioTest {
     @Test
     public void decreaseVolumeAbove0() {
         Radio rad = new Radio();
-        rad.setDecreaseVolume(5);
+        rad.setCurrentVolume(10);
 
-        int expected = 4;
-        int actual = rad.currentVolume;
+        int expected = 10;
+        int actual = rad.getCurrentVolume();
 
         Assertions.assertEquals(expected, actual);
     }
@@ -96,10 +98,33 @@ public class RadioTest {
     @Test
     public void increase100Volume() {
         Radio rad = new Radio();
+        rad.setCurrentVolume(50);
+        rad.increaseVolume();
+
+        int expected = 51;
+        int actual = rad.getCurrentVolume();
+
+        Assertions.assertEquals(expected, actual);
+    }
+    @Test
+    public void increaseVolumeBelow100(){
+     Radio rad = new Radio();
+     rad.setCurrentVolume(90);
+     rad.increaseVolume();
+
+     int expected = 91;
+     int actual = rad.getCurrentVolume();
+
+     Assertions.assertEquals(expected, actual);
+    }
+    @Test
+    public void increaseVolumeAbove100(){
+        Radio rad = new Radio();
+        rad.setCurrentVolume(101);
         rad.increaseVolume();
 
         int expected = 1;
-        int actual = rad.currentVolume;
+        int actual = rad.getCurrentVolume();
 
         Assertions.assertEquals(expected, actual);
     }
@@ -174,7 +199,7 @@ public class RadioTest {
     @Test
     public void ChoosingStationManual() {
         Radio rad = new Radio();
-        rad.setStation(8);
+        rad.setCurrentStation(8);
 
         int expected = 8;
         int actual = rad.getCurrentStation();
@@ -185,7 +210,7 @@ public class RadioTest {
     @Test
     public void ChoosingStationManual0() {
         Radio rad = new Radio();
-        rad.setStation(0);
+        rad.setCurrentStation(0);
 
         int expected = 0;
         int actual = rad.getCurrentStation();
@@ -196,12 +221,32 @@ public class RadioTest {
     @Test
     public void ChoosingStationManual9() {
         Radio rad = new Radio();
-        rad.setStation(9);
+        rad.setCurrentStation(9);
 
         int expected = 9;
         int actual = rad.getCurrentStation();
 
         Assertions.assertEquals(expected, actual);
     }
+     @Test
+    public  void maxStation() {
+        Radio rad = new Radio();
+        rad.setCurrentStation(9);
+        rad.increaseStation();
+
+        int expected = 9;
+        int actual = rad.getCurrentStation();
+        Assertions.assertEquals(expected, actual);
+     }
+     @Test
+    public  void maxVolume() {
+        Radio rad = new Radio();
+        rad.setCurrentVolume(100);
+        rad.increaseVolume();
+
+        int expected = 100;
+        int actual = rad.getCurrentVolume();
+        Assertions.assertEquals(expected, actual);
+     }
 }
 
