@@ -3,42 +3,42 @@ package ru.netology.PoleMetod;
 public class Radio {
     private int currentVolume;
     private int currentStation;
-    public int maxVolume = 100;
-    public int maxStation = 9;
-    public int minVolume;
-    public int minStation;
+    private int maxVolume = 100;
+    private int maxStation = 9;
+    private int minVolume;
+    private int minStation;
 
     public int getCurrentVolume() {
         return currentVolume;
     }
 
-    public void setCurrentVolume(int CurrentVolume) {
-        if (CurrentVolume < minVolume) {
+    public void setCurrentVolume(int currentVolume) {
+        if (currentVolume < minVolume) {
             return;
         }
-        if (CurrentVolume > maxVolume) {
+        if (currentVolume > maxVolume) {
             return;
         }
-        this.currentVolume = CurrentVolume;
+        this.currentVolume = currentVolume;
     }
 
     public void increaseVolume() {
         if (currentVolume < maxVolume) {
             currentVolume = currentVolume + 1;
-        }
-        else
+        } else {
             currentVolume = maxVolume;
+        }
         return;
     }
 
     public void decreaseVolume() {
         if (currentVolume > minVolume) {
             currentVolume = currentVolume - 1;
+        } else {
+            this.currentVolume = minVolume;
         }
-        else
-           this.currentVolume = minVolume;
     }
-//////////////////////////////////////////////////////////////
+
     public int getCurrentStation() {
         return currentStation;
     }
@@ -57,18 +57,16 @@ public class Radio {
     public void increaseStation() { // до 9
         if (currentStation < maxStation) {
             currentStation = currentStation + 1;
-        }
-        else
+        } else {
             currentStation = maxStation;
+        }
     }
 
-    public void setDecreaseStation(int decreaseStation) { //до 0
-        if (decreaseStation > minStation) {
-            decreaseStation = decreaseStation - 1;
+    public void decreaseStation() {
+        if (currentStation > minStation) {
+            currentStation = currentStation - 1;
+        } else {
+            currentStation = minStation;
         }
-        if (decreaseStation == 0) {
-            decreaseStation = 9;
-        }
-        currentStation = decreaseStation;
     }
 }

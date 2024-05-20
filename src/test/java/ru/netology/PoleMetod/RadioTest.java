@@ -106,19 +106,21 @@ public class RadioTest {
 
         Assertions.assertEquals(expected, actual);
     }
+
     @Test
-    public void increaseVolumeBelow100(){
-     Radio rad = new Radio();
-     rad.setCurrentVolume(90);
-     rad.increaseVolume();
+    public void increaseVolumeBelow100() {
+        Radio rad = new Radio();
+        rad.setCurrentVolume(90);
+        rad.increaseVolume();
 
-     int expected = 91;
-     int actual = rad.getCurrentVolume();
+        int expected = 91;
+        int actual = rad.getCurrentVolume();
 
-     Assertions.assertEquals(expected, actual);
+        Assertions.assertEquals(expected, actual);
     }
+
     @Test
-    public void increaseVolumeAbove100(){
+    public void increaseVolumeAbove100() {
         Radio rad = new Radio();
         rad.setCurrentVolume(101);
         rad.increaseVolume();
@@ -166,7 +168,8 @@ public class RadioTest {
     @Test
     public void TestChoosingStationBelow0() {
         Radio rad = new Radio();
-        rad.setDecreaseStation(5);
+        rad.setCurrentStation(5);
+        rad.decreaseStation();
 
         int expected = 4;
         int actual = rad.getCurrentStation();
@@ -177,9 +180,10 @@ public class RadioTest {
     @Test
     public void TestChoosingStation0() {
         Radio rad = new Radio();
-        rad.setDecreaseStation(0);
+        rad.setCurrentStation(0);
+        rad.decreaseStation();
 
-        int expected = 9;
+        int expected = 0;
         int actual = rad.getCurrentStation();
 
         Assertions.assertEquals(expected, actual);
@@ -188,7 +192,8 @@ public class RadioTest {
     @Test
     public void TestChoosingStationBelow9() {
         Radio rad = new Radio();
-        rad.setDecreaseStation(5);
+        rad.setCurrentStation(5);
+        rad.decreaseStation();
 
         int expected = 4;
         int actual = rad.getCurrentStation();
@@ -228,8 +233,9 @@ public class RadioTest {
 
         Assertions.assertEquals(expected, actual);
     }
-     @Test
-    public  void maxStation() {
+
+    @Test
+    public void maxStation() {
         Radio rad = new Radio();
         rad.setCurrentStation(9);
         rad.increaseStation();
@@ -237,9 +243,10 @@ public class RadioTest {
         int expected = 9;
         int actual = rad.getCurrentStation();
         Assertions.assertEquals(expected, actual);
-     }
-     @Test
-    public  void maxVolume() {
+    }
+
+    @Test
+    public void maxVolume() {
         Radio rad = new Radio();
         rad.setCurrentVolume(100);
         rad.increaseVolume();
@@ -247,6 +254,6 @@ public class RadioTest {
         int expected = 100;
         int actual = rad.getCurrentVolume();
         Assertions.assertEquals(expected, actual);
-     }
+    }
 }
 
