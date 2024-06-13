@@ -5,10 +5,9 @@ import org.junit.jupiter.api.Test;
 
 public class RadioTest {
 
-    Radio rad = new Radio(0, 9);
-
     @Test
     public void TestMaxVolume() {
+        Radio rad = new Radio();
         rad.setCurrentVolume(100);
 
         int expected = 100;
@@ -19,7 +18,7 @@ public class RadioTest {
 
     @Test
     public void TestMinVolume() {
-
+        Radio rad = new Radio();
         rad.setCurrentVolume(-1);
 
         int expected = 0;
@@ -30,7 +29,7 @@ public class RadioTest {
 
     @Test
     public void TestBiggerVolume() {
-
+        Radio rad = new Radio();
         rad.setCurrentVolume(101);
 
         int expected = 0;
@@ -41,7 +40,7 @@ public class RadioTest {
 
     @Test
     public void TestMinMaxVolume() {
-
+        Radio rad = new Radio();
         rad.setCurrentVolume(0);
 
         int expected = 0;
@@ -52,7 +51,7 @@ public class RadioTest {
 
     @Test
     public void increaseVolume() {
-
+        Radio rad = new Radio();
         rad.increaseVolume();
 
         int expected = 1;
@@ -63,7 +62,7 @@ public class RadioTest {
 
     @Test
     public void decreaseVolume() {
-
+        Radio rad = new Radio();
         rad.setCurrentVolume(50);
         rad.decreaseVolume();
 
@@ -75,7 +74,7 @@ public class RadioTest {
 
     @Test
     public void decrease0Volume() {
-
+        Radio rad = new Radio();
         rad.setCurrentVolume(0);
         rad.decreaseVolume();
 
@@ -87,7 +86,7 @@ public class RadioTest {
 
     @Test
     public void decreaseVolumeAbove0() {
-
+        Radio rad = new Radio();
         rad.setCurrentVolume(10);
 
         int expected = 10;
@@ -98,7 +97,7 @@ public class RadioTest {
 
     @Test
     public void increase100Volume() {
-
+        Radio rad = new Radio();
         rad.setCurrentVolume(50);
         rad.increaseVolume();
 
@@ -110,7 +109,7 @@ public class RadioTest {
 
     @Test
     public void increaseVolumeBelow100() {
-
+        Radio rad = new Radio();
         rad.setCurrentVolume(90);
         rad.increaseVolume();
 
@@ -122,7 +121,7 @@ public class RadioTest {
 
     @Test
     public void increaseVolumeAbove100() {
-
+        Radio rad = new Radio();
         rad.setCurrentVolume(101);
         rad.increaseVolume();
 
@@ -135,10 +134,10 @@ public class RadioTest {
     ////////////////////////////////////////////////////////////////////
     @Test
     public void TestMinStation() {
-        Radio rad = new Radio();
+        Radio rad = new Radio(20);
         rad.setCurrentStation(-1);
 
-        int expected = 9;
+        int expected = 20;
         int actual = rad.getCurrentStation();
 
         Assertions.assertEquals(expected, actual);
@@ -146,11 +145,10 @@ public class RadioTest {
 
     @Test
     public void TestMaxStation() {
-        Radio rad = new Radio();
-
+        Radio rad = new Radio(20);
         rad.setCurrentStation(10);
 
-        int expected = 0;
+        int expected = 10;
         int actual = rad.getCurrentStation();
 
         Assertions.assertEquals(expected, actual);
@@ -158,7 +156,7 @@ public class RadioTest {
 
     @Test
     public void TestChoosingStationAbove() {
-
+        Radio rad = new Radio(20);
         rad.increaseStation();
 
         int expected = 1;
@@ -169,8 +167,7 @@ public class RadioTest {
 
     @Test
     public void TestChoosingStationBelow0() {
-        Radio rad = new Radio();
-
+        Radio rad = new Radio(20);
         rad.setCurrentStation(5);
         rad.decreaseStation();
 
@@ -182,8 +179,7 @@ public class RadioTest {
 
     @Test
     public void TestChoosingStation0() {
-        Radio rad = new Radio();
-
+        Radio rad = new Radio(20);
         rad.setCurrentStation(0);
         rad.decreaseStation();
 
@@ -195,8 +191,7 @@ public class RadioTest {
 
     @Test
     public void TestChoosingStationBelow9() {
-        Radio rad = new Radio();
-
+        Radio rad = new Radio(20);
         rad.setCurrentStation(5);
         rad.decreaseStation();
 
@@ -208,8 +203,7 @@ public class RadioTest {
 
     @Test
     public void ChoosingStationManual() {
-        Radio rad = new Radio();
-
+        Radio rad = new Radio(20);
         rad.setCurrentStation(8);
 
         int expected = 8;
@@ -220,8 +214,7 @@ public class RadioTest {
 
     @Test
     public void ChoosingStationManual0() {
-        Radio rad = new Radio();
-
+        Radio rad = new Radio(20);
         rad.setCurrentStation(0);
 
         int expected = 0;
@@ -232,8 +225,7 @@ public class RadioTest {
 
     @Test
     public void ChoosingStationManual9() {
-        Radio rad = new Radio();
-
+        Radio rad = new Radio(20);
         rad.setCurrentStation(9);
 
         int expected = 9;
@@ -244,19 +236,18 @@ public class RadioTest {
 
     @Test
     public void maxStation() {
-        Radio rad = new Radio();
-
+        Radio rad = new Radio(20);
         rad.setCurrentStation(9);
         rad.increaseStation();
 
-        int expected = 9;
+        int expected = 10;
         int actual = rad.getCurrentStation();
         Assertions.assertEquals(expected, actual);
     }
 
     @Test
     public void maxVolume() {
-
+        Radio rad = new Radio(20);
         rad.setCurrentVolume(100);
         rad.increaseVolume();
 
@@ -266,9 +257,23 @@ public class RadioTest {
     }
 
     @Test
-    public void testRadio() {
-        Radio rad = new Radio();
+    public void currentStationAboveMax() {
+        Radio rad = new Radio(20);
+        rad.setCurrentStation(21);
 
+        int expected = 0;
+        int actual = rad.getCurrentStation();
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void increaseStationAboveMax() {
+        Radio rad = new Radio(20);
+        rad.setCurrentStation(20);
+        rad.increaseStation();
+
+        int expected = 20;
+        int actual = rad.getCurrentStation();
+        Assertions.assertEquals(expected, actual);
     }
 }
-
