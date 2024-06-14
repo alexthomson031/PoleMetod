@@ -6,13 +6,13 @@ public class Radio {
     private int maxVolume = 100;
     private int maxStation;
     private int minVolume;
-    private int minStation;
+    private int minStation = 0;
 
     public Radio() {
     }
 
     public Radio(int stations) {
-        this.maxStation = stations;
+        this.maxStation = stations - 1;
     }
 
     public int getCurrentVolume() {
@@ -64,8 +64,6 @@ public class Radio {
     public void increaseStation() { // до 9
         if (currentStation < maxStation) {
             currentStation = currentStation + 1;
-        } else {
-            currentStation = maxStation;
         }
     }
 
