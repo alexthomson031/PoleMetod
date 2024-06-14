@@ -137,7 +137,7 @@ public class RadioTest {
         Radio rad = new Radio(20);
         rad.setCurrentStation(-1);
 
-        int expected = 20;
+        int expected = 19;
         int actual = rad.getCurrentStation();
 
         Assertions.assertEquals(expected, actual);
@@ -272,7 +272,7 @@ public class RadioTest {
         rad.setCurrentStation(20);
         rad.increaseStation();
 
-        int expected = 20;
+        int expected = 1;
         int actual = rad.getCurrentStation();
         Assertions.assertEquals(expected, actual);
     }
